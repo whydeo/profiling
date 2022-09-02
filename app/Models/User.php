@@ -18,11 +18,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'avatar'
-    ];
+        'name', 'email', 'password',
+        'avatar', 'provider_id', 'provider',
+        'access_token'
+   ];
+   
+   //You can also use below statement 
+   
+   protected $guarded = ['*'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -51,4 +54,9 @@ class User extends Authenticatable
             return 'https://ui-avatars.com/api/?name=' . str_replace(' ', '+', $this->name) . '&background=fff&color=6777ef&size=100';
         endif;
     }
+
+    public function socialAccounts()
+{
+  return $this->hasMany(SocialAccount::class);
+}
 }

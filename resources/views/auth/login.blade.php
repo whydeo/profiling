@@ -75,6 +75,13 @@
                                 {{ __('Login') }}
                             </button>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <p>Login With:</p>
+                                <a href="{{ url('login/facebook') }}" class="btn btn-success">Facebook</a>
+                                <a href="{{ url('login/google') }}" class="btn btn-success">Google</a>
+                            </div>
+                        </div>
                     </form>
 
                 </div>
@@ -82,6 +89,7 @@
             <div class="mt-3 text-muted text-center">
                 Don't have an account? <a href="{{ route('register') }}">Create One</a>
             </div>
+           
             <div class="simple-footer">
                 Copyright © Stisla 2018
             </div>

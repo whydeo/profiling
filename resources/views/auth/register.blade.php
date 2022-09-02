@@ -77,6 +77,8 @@
                                 {{ __('Register') }}
                             </button>
                         </div>
+                        <hr>
+                     
                     </form>
                 </div>
             </div>
