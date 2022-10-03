@@ -15,12 +15,17 @@ class CreateInfluencersTable extends Migration
     {
         Schema::create('influencers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('katinflu_id');
-            $table->foreign('katinflu_id')->references('id')->on('katinflus')->onDelete('cascade');
+            // $table->unsignedBigInteger('katinflu_id');
+            // $table->foreign('katinflu_id')->references('id')->on('katinflus')->onDelete('cascade');
             $table->string('nama');
+            $table->string('katinflu')->nullable();
             $table->string('headline');
             $table->string('alamat');
             $table->string('gender');
+            $table->string('instagram')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('inflow')->nullable();
+            $table->string('tikflow')->nullable();
             $table->string('foto');
             $table->text('bio');
             $table->string('birthday');

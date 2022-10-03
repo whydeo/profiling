@@ -13,6 +13,7 @@
   <div class="card-body">
     <div class="panel-header panel-header-sm">
         </div>
+        
         <div class="content">
         <div class="row">
           <div class="col-md-12">
@@ -104,6 +105,15 @@
                   @endforeach
                 </select>
               </div>
+
+              <div class="form-group">
+                <label>MASUKAN JENIS BERITA</label>
+                <select name="jenis" class="form-control">
+                  @foreach($jns as $jes)
+                  <option value="{{$jes->id_jns}}">{{$jes->nama}}</option>
+                  @endforeach
+                </select>
+              </div>
                 <div class="form-group">
 		<label>MASUKAN ISI BERITA</label>
 		<textarea class="form-control" name="isi" required=""></textarea>
@@ -168,8 +178,8 @@
         
 
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary">OK</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             
           </div>
       </div>
   </div>
@@ -208,9 +218,17 @@
                   @endforeach
                 </select>
               </div>
+              <div class="form-group">
+                <label>MASUKAN KATEGORI</label>
+                <select name="status" class="form-control">
+                  <option value="{{$d->status}}">{{$d->status}}</option>
+                <option value="aktif">aktif</option>
+                <option value="nonaktif">nonaktif</option>
+                </select>
+              </div>
               
               
-                <div class="form-group">
+          <div class="form-group">
             <label>MASUKAN ISI BERITA</label>
             <textarea class="form-control"  name="isi" required=""> {{$d->isi}} </textarea>
           </div>

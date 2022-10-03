@@ -49,7 +49,9 @@ class SocialController extends Controller
             $new_user->name = $user->name;
             $new_user->email = $user->email;
             $new_user->google_id = $user->id;
+        $new_user->role= "user";
             $new_user->password = bcrypt('123456');
+            // dd($new_user);
             $new_user->save();
             Auth::login($new_user);
             return redirect('influencer\create');

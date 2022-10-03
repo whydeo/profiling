@@ -14,4 +14,8 @@ class berita extends Model
     {
     	return $this->belongsTo('App\Models\Kategori');
     }
+    public function jnsbrta()
+    {
+    	return $this->belongsTo('App\Models\jnsbrta');
+    }
 }

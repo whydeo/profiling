@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\Kategori;
+use App\Models\jnsbrta;
 use Session;
 class BeritaController extends Controller
 {
@@ -14,14 +15,17 @@ class BeritaController extends Controller
         $data = Berita::orderBy('created_at','DESC')
         ->paginate(10);
         $datak=Kategori::all();
-    return view('berita',compact('data','datak'));
+        $jns=jnsbrta::all();
+    return view('berita',compact('data','datak','jns'));
     }
 
     
     public function create()
     {
         $data=Kategori::all();
-        return view('berita',compact('data'));
+        $datas=jnsbrta::all();
+    
+        return view('berita',compact('data','datas'));
     }
 
  
@@ -35,11 +39,13 @@ class BeritaController extends Controller
 
         $Berita = new Berita;
         $Berita->kategori_id = $request->kategori;
+        $Berita->id_jns = $request->jenis;
         $Berita->judul = $request->judul;
         $Berita->penulis = $request->penulis;
         $Berita->tanggal = date('Y-m-d');
         $Berita->isi = $request->isi;
         $Berita->foto = $org;
+        $Berita->status = "aktif";
         $Berita->save();
         if ($Berita) {
             Session::flash('success','Success Tambah Data');
@@ -76,6 +82,7 @@ class BeritaController extends Controller
             $Berita->judul = $request->judul;
             $Berita->penulis = $request->penulis;
             $Berita->isi = $request->isi;
+            $Berita->status = $request->status;
             $Berita->save();
 
            if ($Berita) {
@@ -97,6 +104,7 @@ class BeritaController extends Controller
             $Berita->penulis = $request->penulis;
             $Berita->isi = $request->isi;
             $Berita->foto = $org;
+            $Berita->status = $request->status;
             $Berita->save();
             if ($Berita) {
                 Session::flash('success','Success Ubah Data');

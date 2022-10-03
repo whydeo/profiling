@@ -14,7 +14,7 @@ class KategoriController extends Controller
         // dd($data);
         return view('kategori',compact('data'));
     }
-
+   
   
     public function create()
     {
@@ -99,4 +99,5 @@ class KategoriController extends Controller
             return redirect()->route('index');
         }
     }
+
 }

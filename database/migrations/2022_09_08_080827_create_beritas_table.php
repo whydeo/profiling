@@ -17,12 +17,16 @@ class CreateBeritasTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
+            $table->unsignedBigInteger('id_jns');
+            $table->foreign('id_jns')->references('id_jns')->on('jnsbrtas')->onDelete('cascade');
             $table->string('judul');
             $table->string('penulis');
             $table->date('tanggal');
             $table->text('isi');
             $table->string('foto');
+            $table->string('status');
             $table->timestamps();
+            
         });
     }
 

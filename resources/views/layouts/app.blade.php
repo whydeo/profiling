@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
     <!-- Page Specific CSS File -->
+
+    <livewire:styles/>
+<livewire:scripts/>
     @yield('css')
 </head>
 

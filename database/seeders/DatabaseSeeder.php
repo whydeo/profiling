@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            jnsSeeder::class,
             // TestSeeder::class,
         ]);
-        $this->call([
-            katinSeeder::class,
-            // TestSeeder::class,
-        ]);
+        // $this->call([
+        //     katinSeeder::class,
+        //     // TestSeeder::class,
+        // ]);
     }
 }

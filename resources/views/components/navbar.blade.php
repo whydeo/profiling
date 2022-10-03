@@ -17,7 +17,8 @@
         <!-- navbar right -->
         <ul class="navbar-nav navbar-right">
             <li class="dropdown">
-                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                <a href="{{ route('logout') }}" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
                     <img alt="image" src="{{ auth()->user()->avatar_url }}" width="30" class="rounded-circle mr-1">
                     <div class="d-sm-none d-lg-inline-block">
                         Hi, {{ Str::words(auth()->user()->name, 1, '') }}

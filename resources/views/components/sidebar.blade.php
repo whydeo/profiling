@@ -12,7 +12,7 @@
                 <!-- menu header -->
                 <li class="menu-header">General</li>
                 <!-- menu item -->
-                @if (auth()->user()->name=="admin")
+                @if (auth()->user()->role=="admin")
                     
                 
                 <li class="{{ Route::is('dashboard') ? 'active' : '' }}">
@@ -39,7 +39,7 @@
                         <span>Profile</span>
                     </a>
                 </li>
-                @elseif (auth()->user()->name!="admin")    
+                @elseif (auth()->user()->role=="user")    
                       <li class="{{ Route::is('influencer.create') ? 'active' : '' }}">
                           <a href="{{ route('influencer.create') }}">
                               <i class="fas fa-user"></i>

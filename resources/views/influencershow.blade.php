@@ -2,6 +2,16 @@
 
 @section('title', 'Dashboard')
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+<!-- select2-bootstrap4-theme -->
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet"> <!-- for live demo page -->
+<link href="select2-bootstrap4.css" rel="stylesheet"> <!-- for local development env -->
+
+
+
 {{-- css --}}
 <style>
     body {
@@ -147,11 +157,17 @@ p {
 
 </style>
 
+
 @section('content')
 <div class="card">
         <div class="card-header">
         <h4>Dashboard</h4>
     </div>
+    @if(Session::has('success'))
+	<div class="alert alert-success">
+		<p>{{Session::get('success')}}</p>
+	</div>
+@endif
     <div class="card-body">
 
         <div class="page-content page-container" id="page-content">
@@ -171,7 +187,7 @@ p {
   
                                                                           </div>
                                                                         <h6 class="f-w-600">{{$item->nama}}</h6>
-                                                                        <p>{{$item->katinflu->nama}}</p>
+                                                                        <p>{{$item->katinflu}}</p>
                                                                         <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                                                     </div>
                                                                 </div>
@@ -211,9 +227,9 @@ p {
                                                                        
                                                                         
                                                                         <ul class="social-link list-unstyled m-t-40 m-b-10">
-                                                                            <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
-                                                                            <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
-                                                                            <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
+                                                                            <li><a href="{{$item->tiktok}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
+                                                                            <li><a href="{{$item->twiter}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
+                                                                            <li><a href="{{$item->instagram}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
                                                                         </ul>
                                                                     </div>
 
@@ -228,7 +244,7 @@ p {
                                                                   <div class="col-sm-8">
                                                                     <div class="col-sm-12">
                                                                         <p class="m-b-10 f-w-600">bio</p>
-                                                                        <h6 class="text-muted f-w-400">{{$item->bio}}</h6>
+                                                                        <h6 class="text f-w-400">{{$item->bio}}</h6>
                                                                     </div>
                                                                   </div>
                                                                   
@@ -250,7 +266,7 @@ p {
                                                           <div class="col-md-12">
                                                             <div class="card">
                                                               <div class="card-header d-flex justify-content-between">
-                                                                <h4 class="card-title">INFLUENCER</h4>
+                                                                <h4 class="card-title">EDIT YOUR PROFILE</h4>
                                                         <!-- Button trigger modal -->
                                                 
                                                   </div>
@@ -316,20 +332,21 @@ p {
                                                             <br>
                                                           </div>
                                                           
-                                                          <div class="col-md-6" style="margin-top: -165px">
-                                                            <article id="edit_categories" class="white-content-block">
-                                                  <h4 class="panel-title">Categories &nbsp;&nbsp;<span class="glyphicon glyphicon-ok color-green" aria-hidden="true"></span></h4>
-                                                  <div class="panel-body">
-                                                    <p> Add up to 5 categories you are influential in. </p>
-                                                    
-                                                   
-                                                      <select name="katinflu" class="form-control">
-                                                        <option value="{{$item->katinflu->id}}">{{$item->katinflu->nama}}</option>
-                                                                @foreach($data as $d)
-                                                                <option value="{{$d->id}}">{{$d->nama}}</option>
-                                                                @endforeach
-                                                      </select>
-                                                    </div>
+                                                          {{-- <div class="col-md-6" style="margin-top: -165px"> --}}
+                                                            <div class="col-md-6" style="margin-top: -165px">
+                                                                <div class="form-group">
+                                                                  <label for="inputAddress">Tik tok</label>
+                                                                  <input type="text" class="form-control" name="tiktok" id="inputAddress" value="{{$item->tiktok}}" placeholder="masukan link profil">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                  <label for="inputAddress">twiter</label>
+                                                                  <input type="text" class="form-control" name="twiter" id="inputAddress" value="{{$item->twiter}}" placeholder="masukan link profil">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                  <label for="inputAddress">instagram</label>
+                                                                  <input type="text" class="form-control" name="instagram" id="inputAddress" value="{{$item->instagram}}" placeholder="masukan link profil">
+                                                                </div>
+                                                          
                                                         </div>
                                                         </div>
                                                 
@@ -353,4 +370,25 @@ p {
                                                   
     </div>
 </div>
+
+@section('js')
+       
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript">
+$(function () {
+  $('select').each(function () {
+    $(this).select2({
+      theme: 'bootstrap4',
+      width: 'style',
+      placeholder: $(this).attr('placeholder'),
+      allowClear: Boolean($(this).data('allow-clear')),
+    });
+  });
+});
+</script>
+@endsection
 @endsection

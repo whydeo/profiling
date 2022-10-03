@@ -10,8 +10,8 @@ class Influencer extends Model
     use HasFactory;
     protected $table = "influencers";
 
-    public function katinflu()
-    {
-    	return $this->belongsTo('App\Models\katinflu');
-    }
+    // public function katinflu()
+    // {
+    // 	return $this->belongsTo('App\Models\katinflu');
+    // }
 }

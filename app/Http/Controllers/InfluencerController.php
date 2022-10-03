@@ -16,19 +16,27 @@ class InfluencerController extends Controller
      */
     public function index()
     {
-        return view('influencer');
+        // $kat=katinflu::all();
+        $data=influencer::all();
+        // dd($data);
+        return view('indexinflu',compact('data'));
     }
-
  
     public function create()
     {
-    $data=katinflu::all();
-    return view('influencer',compact('data'));
+        $email= auth()->user()->email;
+
+        $item = influencer::where('email',$email)->first();
+      
+        
+       
+    return view('influencer',compact('item'));
     }
 
    
     public function store(Request $request)
     {
+        // dd($request);
        $email= auth()->user()->email;
        
 
@@ -39,8 +47,11 @@ class InfluencerController extends Controller
         $file->move($path,$org);
 
         $influencer = new influencer;
-        $influencer->katinflu_id = $request->katinflu;
+        // $influencer->katinflu_id = $request->katinflu[0];
         $influencer->nama = $request->nama;
+        $influencer->tiktok = $request->tiktok;
+        $influencer->twiter = $request->twiter;
+        $influencer->instagram = $request->instagram;
         $influencer->headline = $request->headline;
         $influencer->alamat = $request->alamat;
         $influencer->birthday = date('Y-m-d');
@@ -48,6 +59,8 @@ class InfluencerController extends Controller
         $influencer->minimum_price = $request->minimum_price;
         $influencer->bio = $request->bio;
         $influencer->foto = $org;
+
+    
         $influencer->email= $email;
         $influencer->save();
 
@@ -71,12 +84,12 @@ class InfluencerController extends Controller
      */
     public function show( )
     {
-        $data=katinflu::all();
+        // $data=katinflu::all();
         $email= auth()->user()->email;
          $item = influencer::where('email',$email)->first();
         //  dd($item);
         
-        return view('influencershow',compact('item','data'));
+        return view('influencershow',compact('item'));
     }
 
     /**
@@ -103,7 +116,9 @@ class InfluencerController extends Controller
         $foto = $request->file('foto');
         if ($foto == "") {
             $influencer = influencer::find($id);
-            $influencer->katinflu_id = $request->katinflu;
+            $influencer->tiktok = $request->tiktok;
+            $influencer->twiter = $request->twiter;
+            $influencer->instagram = $request->instagram;
             $influencer->nama = $request->nama;
             $influencer->headline = $request->headline;
             $influencer->alamat = $request->alamat;
@@ -115,10 +130,10 @@ class InfluencerController extends Controller
             $item;
            if ($influencer) {
                 Session::flash('success','Success Ubah Data');
-               return view('influencershow',compact('item'));
+                return back();
             } else {
                 Session::flash('success','Failed Ubah Data');
-               return view('influencershow',compact('item'));
+                return back();
             }
         } else {
             $file = $request->file('foto');
@@ -127,7 +142,9 @@ class InfluencerController extends Controller
             $file->move($path,$org);
 
             $influencer = influencer::find($id) ;
-            $influencer->katinflu_id = $request->katinflu;
+            $influencer->tiktok = $request->tiktok;
+            $influencer->twiter = $request->twiter;
+            $influencer->instagram = $request->instagram;
             $influencer->nama = $request->nama;
             $influencer->headline = $request->headline;
             $influencer->alamat = $request->alamat;
@@ -141,10 +158,10 @@ class InfluencerController extends Controller
             
             if ($influencer) {
                 Session::flash('success','Success Ubah Data');
-                return view('influencershow');
+                return back();
             } else {
                 Session::flash('success','Failed Ubah Data');
-                return view('influencershow');
+                return back();
             }
         }
     }
