@@ -19,7 +19,6 @@ class BeritaController extends Controller
     return view('berita',compact('data','datak','jns'));
     }
 
-    
     public function create()
     {
         $data=Kategori::all();
@@ -62,9 +61,13 @@ class BeritaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( request $request ,$id)
     {
-        //
+            $kat=berita::where('kategori_id',$id)->get();
+        // dd($kat);
+
+        return view('beritashow',compact('kat'));
+
     }
 
     /**

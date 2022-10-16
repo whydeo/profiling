@@ -24,11 +24,17 @@ class KategoriController extends Controller
    
     public function store(Request $request)
     {
+        // dd($request);
+        $file = $request->file('foto');
+        $org = $file->getClientOriginalName();
+        $path = 'fotokat';
+        $file->move($path,$org);
         $KategoriModel = new Kategori;
         $KategoriModel->nama = $request->nama;
         $KategoriModel->keterangan = $request->keterangan;
         $KategoriModel->status = 'aktif';
         $KategoriModel->tanggal = date('Y-m-d');
+        $KategoriModel->foto = $org;
         $KategoriModel->save();
         if ($KategoriModel) {
             Session::flash('success','Success Tambah Data');

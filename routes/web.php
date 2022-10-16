@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AboutusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('login/google',[SocialController::class,'googleRedirect']);
 Route::get('login/google/callback',[SocialController::class,'loginWithGoogle']);
 
 Route::GET('/',[App\Http\Controllers\NewsController::class, 'index'])->name('welcome');
+Route::GET('aboutus/index',[App\Http\Controllers\AboutusController::class, 'index'])->name('aboutus.index');
 // Route::view('indexinflu', 'indexinflu')->name('indexinflu');
 Route::GET('influencer/index',[App\Http\Controllers\InfluencerController::class, 'index'])->name('influencer.index');
 Route::GET('influencer/show',[App\Http\Controllers\InfluencerController::class, 'show'])->name('influencer.show')->middleware('Role:user');
@@ -54,6 +56,7 @@ Route::GET('influencer/delete/{id}',[App\Http\Controllers\InfluencerController::
 	Route::GET('berita/index',[App\Http\Controllers\BeritaController::class, 'index'])->name('berita.index')->middleware('Role:admin');
 	Route::GET('berita/create',[App\Http\Controllers\BeritaController::class, 'create'])->name('berita.create')->middleware('Role:admin');
 	Route::post('berita/store',[App\Http\Controllers\BeritaController::class, 'store'])->name('berita.store')->middleware('Role:admin');
+	Route::GET('berita/show{id}',[App\Http\Controllers\BeritaController::class, 'show'])->name('berita.show');
 	Route::GET('berita/edit/{id}',[App\Http\Controllers\BeritaController::class, 'edit'])->name('berita.edit')->middleware('Role:admin');
 	Route::post('berita/update/{id}',[App\Http\Controllers\BeritaController::class, 'update'])->name('berita.update')->middleware('Role:admin');
 	Route::GET('berita/delete/{id}',[App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.delete')->middleware('Role:admin');

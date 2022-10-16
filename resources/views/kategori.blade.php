@@ -91,7 +91,7 @@
             </div>
            
             
-        <form action="{{route('store')}}" method="POST">
+        <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
               @csrf
             <div class="modal-body">
               <div class="form-group">
@@ -102,13 +102,16 @@
                 <label for="keterangan">keterangan</label>
                 <textarea rows="4", cols="54" id="keterangan" name="keterangan" style="resize:none, "></textarea>
               </div>
-              
+              <div class="form-group">
+                <label>MASUKAN FOTO</label>
+                <input type="file" name="foto" class="form-control" required="">
+              </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary tutup-modal" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
-          </div>
+        </div>
         </div>
       </div>
     </div>
