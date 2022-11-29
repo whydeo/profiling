@@ -57,6 +57,8 @@ Route::GET('influencer/delete/{id}',[App\Http\Controllers\InfluencerController::
 	Route::GET('berita/create',[App\Http\Controllers\BeritaController::class, 'create'])->name('berita.create')->middleware('Role:admin');
 	Route::post('berita/store',[App\Http\Controllers\BeritaController::class, 'store'])->name('berita.store')->middleware('Role:admin');
 	Route::GET('berita/show{id}',[App\Http\Controllers\BeritaController::class, 'show'])->name('berita.show');
+	Route::GET('berita/liat{id}',[App\Http\Controllers\BeritaController::class, 'liat'])->name('berita.liat');
+	Route::GET('berita/showkat{id?}',[App\Http\Controllers\BeritaController::class, 'showkat'])->name('berita.showkat');
 	Route::GET('berita/edit/{id}',[App\Http\Controllers\BeritaController::class, 'edit'])->name('berita.edit')->middleware('Role:admin');
 	Route::post('berita/update/{id}',[App\Http\Controllers\BeritaController::class, 'update'])->name('berita.update')->middleware('Role:admin');
 	Route::GET('berita/delete/{id}',[App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.delete')->middleware('Role:admin');
